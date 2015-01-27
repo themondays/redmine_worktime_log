@@ -1,5 +1,5 @@
 # Redmine Worktime Log Plugin
-Release Candidate: 0.0.1
+Release Candidate: 0.0.2
 
 ### Inception
 Hey folks.
@@ -13,11 +13,24 @@ Plugin built for internal use for Redmine and PostgreSQL, by this reason some qu
 Feel free to make forks and touch me in case if you have some fixes and suggestions.
 
 ### How it works?
-Push START button and continue working and don't forget to press STOP when you going on lunch :)
+1. Enable Worktime Log module in your project
+2. Add couple tickets assigned to you
+3. Push START button and continue working
+4. Don't forget press STOP when you going on lunch :)
+
+![Worktime Log Issue Stopwatch Widget](http://www.redmine.org/attachments/download/13033/rwtl-stopwatch.png)
+
+### Extra Issue Toolbar
+To make life easier I have added additional toolbar to issue overview. In case if you don't need this tool you may change toolbar visibility inside plugin settings.
+
+![Worktime Log Issue Extra Toolbar](http://www.redmine.org/attachments/download/13032/rwtl-issue-toolbar.png)
 
 ### Installation
 1. Copy plugin files to ```/redmine/plugins``` and you will get something like that: ```redmine/plugins/redmine_worktime_log/init.rb```
 2. Run ```rake redmine:plugins NAME=redmine_worktime_log RAILS_ENV=production```
+
+### Settings
+Inside plugin settings you may change widgets visibility as well.
 
 ### Additional thanks to:
 * Stopwatch timer originally from CakePHP app called [project-manager] by [websightdesigns]</li>
@@ -46,3 +59,10 @@ Developed by [Jared Denison] in 2014.
 [jQuery.Chosen]:http://harvesthq.github.io/chosen/
 [Harvest]:http://www.getharvest.com/
 [CC-BY 3.0]:http://creativecommons.org/licenses/by/3.0/
+
+### Changelog
+
+#### Rev. 0.0.2
+* Fixed toolbar stylesheet
+* Fixed toolbar snap up button appearance
+* Added 3 new languages

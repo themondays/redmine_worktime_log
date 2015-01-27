@@ -33,8 +33,6 @@ module RedmineWorktime
       # Rendering widget to specified areas
 
       def view_welcome_index_left(context)
-        #view_issues_sidebar_planning_bottom
-        #  def self.contacts_show_in_top_menu?
         if !!Setting.plugin_redmine_worktime_log[:show_in_welcome]
           _widget(context)
         end

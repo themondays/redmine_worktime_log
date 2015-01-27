@@ -3,7 +3,7 @@ Redmine::Plugin.register :redmine_worktime_log do
   name 'Redmine Worktime Log'
   author 'Jared Denisov'
   description 'Worktime log will help arange spent time and prepare logs for each user.'
-  version '0.0.1'
+  version '0.0.2'
   url 'http://themondays.ca/redmine/plugins/worklog.git'
   author_url 'http://themondays.ca'
 

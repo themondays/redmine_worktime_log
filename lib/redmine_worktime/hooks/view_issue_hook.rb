@@ -17,6 +17,7 @@ module RedmineWorktime
         context[:user_total] = get_user_total(context[:issue].id)
         context[:issue_total] = get_issue_total(context[:issue].id)
         context[:running] = running_issue
+        context[:me] = User.current.id
         context[:running_array] = running_array
         context[:controller].send(:render_to_string, {
           :partial => "worktimelog/widget_issue_toolbar",

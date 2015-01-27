@@ -126,9 +126,13 @@
   .widget h3 .my-summary.small {
     font-size: 0.575em; }
 
-.worktimelog .issue-btn {
+.worktime-log.issue-toolbar {
+  background-color: #F7F6EE;
+  padding: 10px; }
+
+.worktimelog .issue-btn, .worktime-log .issue-btn {
+  display: inline-block;
   margin: 0 1px;
-  float: right;
   height: 21px;
   line-height: 16px;
   border-radius: 2px;
@@ -144,7 +148,7 @@
   border: inset 0 -2px 0 0 rgba(0, 0, 0, 0.2);
   outline: none;
   line-height: 21px; }
-.worktimelog .issue-btn.nice {
+.worktimelog .issue-btn.nice, .worktime-log .issue-btn.nice {
   background-color: #CC5E2E; }
 
 table.worktime-log-table th .day-total {

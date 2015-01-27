@@ -17,10 +17,15 @@
 	}
 }
 
-.worktimelog {
+.worktime-log.issue-toolbar {
+  background-color: #F7F6EE;
+  padding: 10px;
+}
+
+.worktimelog, .worktime-log {
 	.issue-btn {
+		display: inline-block;
 		margin: 0 1px;
-		float: right;
 		height: 21px;
 		line-height: 16px;
 		border-radius: 2px;
