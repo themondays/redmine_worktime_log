@@ -1,0 +1,25 @@
+<h3><%= l(:fieldset_widget_title) %></h3>
+<p>
+  <label><%= l(:label_show_stopwatch_in_projects) %></label>
+  <%= hidden_field_tag 'settings[show_in_projects]', 0, :id => nil %>
+  <%= check_box_tag 'settings[show_in_projects]', 1, @settings[:show_in_projects] %>
+</p>
+
+<p>
+  <label><%= l(:label_show_stopwatch_in_issues) %></label>
+  <%= hidden_field_tag 'settings[show_in_issues]', 0, :id => nil %>
+  <%= check_box_tag 'settings[show_in_issues]', 1, @settings[:show_in_issues] %>
+</p>
+
+<p>
+  <label><%= l(:label_show_stopwatch_in_welcome) %></label>
+  <%= hidden_field_tag 'settings[show_in_welcome]', 0, :id => nil %>
+  <%= check_box_tag 'settings[show_in_welcome]', 1, @settings[:show_in_welcome] %>
+</p>
+
+<h3><%= l(:fieldset_smart_toolbar) %></h3>
+<p>
+  <label><%= l(:label_show_smart_toolbar_issue) %></label>
+  <%= hidden_field_tag 'settings[show_toolbar_in_issue]', 0, :id => nil %>
+  <%= check_box_tag 'settings[show_inshow_toolbar_in_issue_welcome]', 1, @settings[:show_toolbar_in_issue] %>
+</p>

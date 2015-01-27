@@ -1,0 +1,37 @@
+<div class="worktime-log issue-toolbar" data-id="<%= @issue.id %>" data-state="">
+	<% if user_total != nil %>
+		<% user_total.each do |my| %>
+			<% if my.user_time != nil %>
+				<% spent = Time.at(my.user_time.to_f).utc.strftime('%R:%S') %>
+			<% else %>
+				<% spent = '00:00:00' %>
+			<% end %>
+			<%= l(:label_worktime_you_spent) %>: <strong><%= spent %></strong>
+		<% end %>
+	<% end %>
+
+	<% if issue_total != nil %>
+		<% issue_total.each do |all| %>
+			<% if all.issue_time != nil %>
+				Total: <strong><%= Time.at(all.issue_time.to_f).utc.strftime('%R:%S') %></strong>
+			<% end %>
+		<% end %>
+	<% end %>
+	<% if @issue.assigned_to_id != @me %>
+		<%= link_to(l(:label_worktime_snapup), {controller: 'stopwatch', action: 'snapup', id: issue.id, back: "true"}, class: 'worktimelog issue-btn nice') %>
+	<% end %>
+	<% if running_array[0] != nil %>
+	<% running.each do |r| %>
+		<% if r.issue_id == @issue.id %>
+		<%= link_to(l(:label_worktime_stop), { controller: "stopwatch", action: "timer", id: issue.id, state: "stop", back: true}, class: "worktimelog issue-btn") %>
+
+		<% elsif r.issue_id != @issue.id && r.issue_id != nil %>
+		<%= link_to(l(:label_worktime_switch), { controller: "stopwatch", action: "timer", id: issue.id, state: "start", back: true}, class: "worktimelog issue-btn") %>
+		<% else %>
+		<%= link_to(l(:label_worktime_start), { controller: "stopwatch", action: "timer", id: issue.id, state: "start", back: true}, class: "worktimelog issue-btn") %>
+		<% end %>
+	<% end %>
+	<% else %>
+		<%= link_to(l(:label_worktime_start), { controller: "stopwatch", action: "timer", id: issue.id, state: "start", back: true}, class: "worktimelog issue-btn") %>
+	<% end %>
+</div>

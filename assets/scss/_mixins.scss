@@ -1,0 +1,23 @@
+@mixin universe($property,$value) {
+	-webkit-#{$property}: #{$value};
+	-moz-#{$property}: #{$value};
+	-ms-#{$property}: #{$value};
+	-o-#{$property}: #{$value};
+	#{$property}: #{$value};
+}
+@mixin box-shadow($str) {
+	@include universe(box-shadow, $str);
+}
+@mixin box-sizing($str) {
+	@include universe(box-sizing, $str);
+}
+@mixin _border-box() {
+	@include box-sizing(border-box); 
+}
+@mixin -content-box {
+	background:#fff;
+	margin: 0;
+	border: none;
+	margin-bottom: $span-margin;
+	padding: $span-margin;
+}

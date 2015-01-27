@@ -1,0 +1,29 @@
+table.worktime-log-table {
+	th .day-total {
+		font-weight: 300;
+		font-size: 12px;
+		border-radius: 3px;
+		background-color: #ecf0f1;
+		color: #7f8c8d;
+		padding: 2px 3px;
+		position: relative;
+		display: inline-block;
+	}
+	th .day-total::before {
+		content: '';
+		border: 5px transparent solid;
+		width: 0;
+		height: 0;
+		display: block;
+		padding: 0;
+		margin: 0;
+		top: -9px;
+		margin-left: -5px;
+		z-index: 2;
+		left: 50%;
+		line-height: 0;
+		position: absolute;
+		background-color: transparent;
+		border-bottom-color: #ecf0f1;
+	}	
+}

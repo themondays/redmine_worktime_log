@@ -1,0 +1,43 @@
+.widget {
+	&.worklog {
+		.timer-container {
+			.stopwatch {
+				padding-left: 8px;
+				font-size: 0.7rem;
+			}
+		}
+	}
+	h3 {
+		.my-summary {
+			float: right;
+			&.small {
+				font-size: 0.575em;
+			}
+		}
+	}
+}
+
+.worktimelog {
+	.issue-btn {
+		margin: 0 1px;
+		float: right;
+		height: 21px;
+		line-height: 16px;
+		border-radius: 2px;
+		left: 0;
+		padding: 0 10px;
+		margin-left: 0;
+		border: none;
+		box-shadow: none;
+		text-shadow: none;
+		background: #179e7f;
+		color: #fff;
+		text-decoration: none;
+		border: inset 0 -2px 0 0 rgba(0,0,0,.2);
+		outline: none;
+		line-height: 21px;
+	}
+	.issue-btn.nice {
+		background-color: #CC5E2E;
+	}
+}

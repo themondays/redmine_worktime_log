@@ -1,0 +1,56 @@
+<h2><%= l(:label_worktime_project_summary) %></h2>
+
+<form accept-charset="UTF-8" method="get">
+  <fieldset><legend><%= l(:label_worktime_filter) %></legend>
+    <label for="started"><%= l(:label_worktime_filter_from) %>:</label>
+    <input id="started" name="started" size="30" type="text">
+    <label for="finished"><%= l(:label_worktime_filter_to) %>:</label>
+    <input id="finished" name="finished" size="30" type="text">
+    <input class="small" type="submit" value="<%= l(:label_worktime_filter_apply) %>">
+  </fieldset>
+</form>
+<% daytotal = 0 %>
+<% subtotal = 0 %>
+<% date_listed = 0 %>
+<div class="autoscroll">
+  <table width="100%" class="list worktime-log-table">
+    <thead>
+        <tr>
+            <th><%= l(:label_worktime_th_username) %></th>
+            <th><%= l(:label_worktime_th_issue) %></th>
+            <th><%= l(:label_worktime_th_id) %></th>
+            <th><%= l(:label_worktime_th_start) %></th>
+            <th><%= l(:label_worktime_th_end) %></th>
+            <th><%= l(:label_worktime_th_total) %></th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @summary.each do |log| %>
+        <% if Time.at(log.finished).gmtime.strftime('%A, %B %e / %Y') != date_listed %>
+          <% if date_listed != 0 %>
+            <% daytotal1 = 0 %>
+          <% end %>
+          <% date_listed = Time.at(log.finished).gmtime.strftime('%A, %B %e / %Y') %>
+        <tr>
+            <th colspan="<% if daytotal > 0 %>5<% else %>6<% end %>"><%= date_listed %></th>
+          <% if daytotal > 0 %>
+          	<th><span class="day-total"><strong><%= Time.at(daytotal).utc.strftime('%R:%S') %></strong></span></th>
+          <% end %>
+        </tr>
+        <% daytotal = 0 %>
+        <% end %>
+        <tr<% if log.user_id == User.current.id %> class="assigned_to"<% end %>>
+          <td><%= link_to(log.user, controller: 'users', action: 'show', id: log.user_id) %></td>
+          <td><%= link_to(log.subject, controller: 'issues', action: 'show', id: log.issue_id) %></td>
+          <td><%= link_to(log.issue_id, controller: 'issues', action: 'show', id: log.issue_id) %></td>
+          <td><%= Time.at(log.started).gmtime.strftime('%Y/%m/%d - %H:%M:%S') %></td>
+          <td><%= Time.at(log.finished).gmtime.strftime('%H:%M:%S') %></td>
+          <td><%= Time.at(log.total).utc.strftime('%H:%M:%S') %></td>
+        </tr>
+        <% daytotal += log.total %>
+        <% subtotal += log.total %>
+      <% end %>
+    </tbody>
+  </table>
+  <h3 class="time-subtotal"><%= Time.at(subtotal).utc.strftime('%R:%S') %></h3>
+</div>

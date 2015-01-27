@@ -1,0 +1,11 @@
+<% worktime_tabs = [
+	{:name => 'general', :partial => 'settings/worktime_general', :label => :label_worktime_general},
+    {:name => 'about', :partial => 'settings/worktime_about', :label => :label_worktime_about},
+    {:name => 'credits', :partial => 'settings/worktime_credits', :label => :label_worktime_credits},
+    {:name => 'license', :partial => 'settings/worktime_license', :label => :label_worktime_license}
+] %>
+
+<%= render_tabs worktime_tabs %>
+
+<% html_title l(:label_worktime) %>
+

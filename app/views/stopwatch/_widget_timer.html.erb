@@ -1,0 +1,48 @@
+<% runtime = 0 %>
+<% ac = "false" %>
+<% running_issue_id = "" %>
+<% running_issue = "" %>
+<% if running.count > 0 %>
+  <% running.each do |r| %>
+    <% if r.finished %>
+    <% runtime = runtime+(r.finished - r.started) %>
+    <% else %>
+    <% runtime = runtime+(Time.now.getutc - r.started) %>
+      <% ac = true %>
+      <% running_issue_id = r.issue_id %>
+    <% end %>
+  <% end %>
+<% end %>
+  
+<div class="widget worklog">
+  <h3>
+    <%= l(:label_worktime) %>
+    <%= link_to(l(:label_worktime_my_summary), { controller: "worktimelog", action: "user_summary", id: me }, class: "my-summary small") %>
+  </h3>
+  <form id="stopwatch-ui" action="<%= url_for(:controller => 'stopwatch', :action => 'timer') %>">
+
+    <select name="issue_id" class="dropdown">
+      <% projectGroup = 0 %>
+      <% current_task = "" %>
+      <% iss.each do |issue| %>
+        <% if projectGroup != issue.project %>
+          <% if projectGroup != 0 %>
+            </optgroup>
+          <% end %>
+          <optgroup label="<%= issue.project %>">
+          <% projectGroup = issue.project %>
+        <% end %>
+        <option value="<%= issue.id %>"<% if running_issue_id == issue.id %> selected<% running_issue = "##{issue.id} - #{issue.subject}" %><% end %> data-href="/issues/<%= issue.id %>">#<%= issue.id %> - <%= "#{issue.subject}".truncate(70, omission: '...') %></option>
+      <% end %>
+      </optgroup>
+    </select>
+
+    <button class="run" name="state" value="start" data-start="<%= l(:label_worktime_start) %>" data-stop="<%= l(:label_worktime_stop) %>" data-switch="<%= l(:label_worktime_switch) %>"><%= l(:label_worktime_start) %></button>
+
+    <div class="timer-container">
+      <span id="timer" class="stopwatch" data-timer="{active:<%= ac %>,startTime:<%= (runtime*1000).round %>}" data-runtime="<%= (runtime*1000).round %>"><%= Time.at(runtime).gmtime.strftime('%H:%M:%S') %></span>
+      <%= link_to(running_issue, controller: 'issues', action: 'show', id: running_issue_id) %>
+    </div>
+
+  </form>
+</div>
