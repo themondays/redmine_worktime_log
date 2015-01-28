@@ -4,11 +4,11 @@ Release Candidate: 0.0.2
 ### Inception
 Hey folks.
 
-If one work Worktime Log is just a Stopwatch plugin with extended projects / users / issues summary. I'm pretty sure that plugin will help you track your team load without any additional inconvenience editing issue details and billion clicks.
+If describe this plugin in couple words - Worktime Log is just a Stopwatch plugin with extended projects / users / issues summary. I'm pretty sure that plugin will help you track your team load without any additional inconvenience editing issue details and billion clicks.
 
-Worktime Log built about 3 month ago and today I completely added missing things to prepare first RC. 
+Worktime Log built about 3 month ago for internal use and today I decided to share firs public RC with you. 
 
-Plugin built for internal use for Redmine and PostgreSQL, by this reason some queries should be reviewed before push to production with MySQL database.
+In general plugin created and tested with Redmine 2.6 under PostgreSQL, by this reason some queries should be reviewed before push to production with MySQL database.
 
 Feel free to make forks and touch me in case if you have some fixes and suggestions.
 
