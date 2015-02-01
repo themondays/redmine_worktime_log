@@ -18,7 +18,7 @@ class StopwatchController < ApplicationController
   def update_time_entry(t,id)
     now = Time.now.in_time_zone(User.current.time_zone).getutc
     project = Issue.where(:id => id).pluck(:project_id)
-    query = {
+    te = TimeEntry.new(
       :project_id => project[0],
       :user_id => User.current.id,
       :issue_id => id,
@@ -31,21 +31,8 @@ class StopwatchController < ApplicationController
       :tweek => now.strftime('%U'),
       :created_on => now,
       :updated_on => now
-    }
-    TimeEntry.create(query)
-    # TimeEntry.new
-    # entry.project_id = project[0]
-    # entry.user_id = User.current.id
-    # entry.hours = t
-    # entry.activity_id = 0
-    # entry.tyear = User.current.today
-
-    # TimeEntry.create(add_query)
-    # yield time_entry
-    # time_entry.hours = (time_entry.hours + (t/3600))
-    #time_entry.spent_on = Time.now.getutc.strftime('%Y-%m-%d')
-    # entry.save
-
+    )
+    te.save
   end
 
   def time_to_sec(t)
@@ -89,26 +76,20 @@ class StopwatchController < ApplicationController
 
     if params[:state] == "stop"
       @success = true
-
       _stop
-
       if params[:back] == "true"
         redirect_to :back
       end
-
-      # Time.parse(@worklog.pluck(:started)).strftime('%Y-%m-%d %H:%M:%S')
-      # @worklog.update_all({:finished => Time.now.getutc,:total => Time.at(Time.now.getutc-started).strftime('%H:%M:%S')}, :flag => 1)
-
-
-      # @worklog.update_all({:finished => Time.now.getutc,:total => (Time.now.getutc-record.started)}, :flag => 1)
     end
   end
   def snapup
     _stop
     _start
+
     issue = Issue.find(params[:id])
     issue.assigned_to_id = User.current.id
     issue.save
+
     if params[:back] == 'true'
       redirect_to :back
     end

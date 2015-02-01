@@ -40,7 +40,7 @@
     <button class="run" name="state" value="start" data-start="<%= l(:label_worktime_start) %>" data-stop="<%= l(:label_worktime_stop) %>" data-switch="<%= l(:label_worktime_switch) %>"><%= l(:label_worktime_start) %></button>
 
     <div class="timer-container">
-      <span id="timer" class="stopwatch" data-timer="{active:<%= ac %>,startTime:<%= (runtime*1000).round %>}" data-runtime="<%= (runtime*1000).round %>"><%= Time.at(runtime).gmtime.strftime('%H:%M:%S') %></span>
+      <span id="timer" class="stopwatch" data-timer="{active:<%= ac %>,startTime:<%= (runtime*1000).round %>}" data-runtime="<%= (runtime*1000).round %>"><%= to_time(runtime) %></span>
       <%= link_to(running_issue, controller: 'issues', action: 'show', id: running_issue_id) %>
     </div>
 

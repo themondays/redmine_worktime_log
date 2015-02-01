@@ -62,6 +62,11 @@ Developed by [Jared Denison] in 2014.
 
 ### Changelog
 
+#### Rev. 0.0.3
+* Added time helper
+* Fixed issue totals
+* Fixed summary totals
+
 #### Rev. 0.0.2
 * Fixed toolbar stylesheet
 * Fixed toolbar snap up button appearance

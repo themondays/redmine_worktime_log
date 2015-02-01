@@ -31,26 +31,40 @@
             <% daytotal1 = 0 %>
           <% end %>
           <% date_listed = Time.at(log.finished).gmtime.strftime('%A, %B %e / %Y') %>
-        <tr>
-            <th colspan="<% if daytotal > 0 %>5<% else %>6<% end %>"><%= date_listed %></th>
           <% if daytotal > 0 %>
-          	<th><span class="day-total"><strong><%= Time.at(daytotal).utc.strftime('%R:%S') %></strong></span></th>
+            <tr>
+              <td colspan="5">&nbsp;</td>
+              <td><span class="day-total"><strong><%= to_time(daytotal) %></strong></span></td>
+            </tr>
+            <% daytotal = 0 %>
           <% end %>
-        </tr>
-        <% daytotal = 0 %>
+
+          <tr>
+            <th colspan="6"><%= date_listed %></th>
+          </tr>
+
         <% end %>
         <tr<% if log.user_id == User.current.id %> class="assigned_to"<% end %>>
           <td><%= link_to(log.user, controller: 'users', action: 'show', id: log.user_id) %></td>
           <td><%= link_to(log.subject, controller: 'issues', action: 'show', id: log.issue_id) %></td>
           <td><%= link_to(log.issue_id, controller: 'issues', action: 'show', id: log.issue_id) %></td>
-          <td><%= Time.at(log.started).gmtime.strftime('%Y/%m/%d - %H:%M:%S') %></td>
+          <td><%= Time.at(log.started).gmtime.strftime('%H:%M:%S') %></td>
           <td><%= Time.at(log.finished).gmtime.strftime('%H:%M:%S') %></td>
-          <td><%= Time.at(log.total).utc.strftime('%H:%M:%S') %></td>
+          <td><%= to_time(log.total) %></td>
         </tr>
         <% daytotal += log.total %>
         <% subtotal += log.total %>
       <% end %>
+
+      <% if daytotal > 0 %>
+        <tr>
+          <td colspan="5">&nbsp;</td>
+          <td><span class="day-total"><strong><%= to_time(daytotal) %></strong></span></td>
+        </tr>
+        <% daytotal = 0 %>
+      <% end %>
+
     </tbody>
   </table>
-  <h3 class="time-subtotal"><%= Time.at(subtotal).utc.strftime('%R:%S') %></h3>
+  <h3 class="time-subtotal"><%= to_time(subtotal) %></h3>
 </div>

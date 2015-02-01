@@ -2,7 +2,7 @@
 	<% if user_total != nil %>
 		<% user_total.each do |my| %>
 			<% if my.user_time != nil %>
-				<% spent = Time.at(my.user_time.to_f).utc.strftime('%R:%S') %>
+				<% spent = to_time(my.user_time.to_f) %>
 			<% else %>
 				<% spent = '00:00:00' %>
 			<% end %>
@@ -13,7 +13,7 @@
 	<% if issue_total != nil %>
 		<% issue_total.each do |all| %>
 			<% if all.issue_time != nil %>
-				<%= l(:label_worktime_total_spent) %>: <strong><%= Time.at(all.issue_time.to_f).utc.strftime('%R:%S') %></strong>
+				<%= l(:label_worktime_total_spent) %>: <strong><%= to_time(all.issue_time.to_f) %></strong>
 			<% end %>
 		<% end %>
 	<% end %>

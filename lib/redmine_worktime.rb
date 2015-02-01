@@ -1,5 +1,6 @@
 # Redmine Worktime Log Hooks
 # require 'redmine_worktime/patches/project_patch'
+require 'redmine_worktime/helpers/worktime_helper'
 require 'redmine_worktime/hooks/view_layout_hook'
 require 'redmine_worktime/hooks/view_sidebar_hook'
 if !!Setting.plugin_redmine_worktime_log[:show_toolbar_in_issue]
