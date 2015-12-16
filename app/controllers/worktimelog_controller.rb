@@ -64,7 +64,7 @@ class WorktimelogController < ApplicationController
     where_query = "issue_id = #{params[:issue_id]} AND flag = 1"
 
     if (params[:started] && params[:finished])
-      where_query += "AND (started, finished) OVERLAPS ('#{params[:started]}'::DATE, '#{params[:finished]}'::DATE)"
+      where_query += " AND (started >= '#{params[:started]}' AND finished <= '#{params[:finished]}')"
     end
 
     @summary = Worktimelog.joins([{issue: :project},:user]).select('
@@ -101,7 +101,7 @@ class WorktimelogController < ApplicationController
     where_query = "projects.identifier = '#{params[:project_id]}' AND flag = 1"
 
     if (params[:started] && params[:finished])
-      where_query += "AND (started, finished) OVERLAPS ('#{params[:started]}'::DATE, '#{params[:finished]}'::DATE)"
+      where_query += " AND (started >= '#{params[:started]}' AND finished <= '#{params[:finished]}')"
     end
 
     @summary = Worktimelog.joins([{issue: :project},:user]).select('
@@ -135,8 +135,8 @@ class WorktimelogController < ApplicationController
     @date = Time.now
     @where_query = "user_id = #{params[:id]} AND flag = 1"
     @user = User.find(params[:id])
-    if (params[:started] && params[:finished])
-      @where_query += "AND (started, finished) OVERLAPS ('#{params[:started]}'::DATE, '#{params[:finished]}'::DATE)"
+    if (params[:started] && params[:finished])  
+      @where_query += " AND (started >= '#{params[:started]}' AND finished <= '#{params[:finished]}')"    
     end
     @summary = Worktimelog.joins(issue: :project).select('
       issue_id,
